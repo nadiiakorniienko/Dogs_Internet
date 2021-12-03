@@ -12,15 +12,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cloud.dmytrominochkin.examplecompose.model.User
 import cloud.dmytrominochkin.examplecompose.ui.user.UserCard
+import kotlinx.coroutines.flow.Flow
 
 @ExperimentalAnimationApi
 @Composable
 fun Feed(
-    userList: List<User>,
+    usersFlow: Flow<List<User>>,
     onSelected: (User) -> Unit
 ) {
     Surface(Modifier.fillMaxSize()) {
-        val users by remember { mutableStateOf(userList) }
+        val users by usersFlow.collectAsState(initial = emptyList())
         val state = rememberLazyListState()
         LazyColumn(state = state) {
             item {
