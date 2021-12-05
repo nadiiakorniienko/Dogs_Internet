@@ -1,13 +1,7 @@
 package cloud.dmytrominochkin.examplecompose.ui.profile
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -16,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.material.Card
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -24,40 +20,104 @@ import androidx.compose.ui.unit.dp
 import cloud.dmytrominochkin.examplecompose.R
 import cloud.dmytrominochkin.examplecompose.model.User
 import cloud.dmytrominochkin.examplecompose.ui.theme.ExampleComposeTheme
+import androidx.compose.material.Divider
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.ui.unit.Dp
+import org.intellij.lang.annotations.JdkConstants
 
 @Composable
-fun ProfileHeader(user: User) {
-    val padding = 16.dp
-
-    Row(
+fun ProfileHeader(
+    user: User
+) {
+    val heightIn = 320.dp
+    val padding = 8.dp
+    Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = padding, end = padding),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 0.dp)
     ) {
         Image(
-            painter = painterResource(user.avatar),
             modifier = Modifier
-                .size(72.dp)
-                .clip(CircleShape),
-            contentDescription = "avatar",
-            contentScale = ContentScale.Crop
+                .heightIn(max = heightIn)
+                .fillMaxWidth(),
+            painter = painterResource(id = user.avatar),
+            contentScale = ContentScale.Crop,
+            contentDescription = null
         )
+
+        Text(
+            text = user.name,
+            style = MaterialTheme.typography.h6
+        )
+        Divider(color = Color.White, thickness = 1.dp)
+        Text(
+            text = "Sex",
+            style = MaterialTheme.typography.caption
+        )
+        Text(
+            text = user.sex,
+            style = MaterialTheme.typography.h6
+        )
+        Divider(color = Color.White, thickness = 1.dp)
+        Text(
+            text = "Age",
+            style = MaterialTheme.typography.caption
+        )
+        Text(
+            text = user.age,
+            style = MaterialTheme.typography.h6
+        )
+        Divider(color = Color.White, thickness = 1.dp)
+        Text(
+            text = "Personality",
+            style = MaterialTheme.typography.caption
+        )
+        Text(
+            text = user.personality,
+            style = MaterialTheme.typography.h6
+        )
+        Divider(color = Color.White, thickness = 1.dp)
         Spacer(Modifier.size(padding))
-        Column(Modifier.weight(1f)) {
-            Text(
-                text = user.name,
-                style = MaterialTheme.typography.h6
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FollowingInfo(text = "followers", number = user.numOfFollowers)
-                FollowingInfo(text = "following", number = user.numOfFollowing)
-                Button(onClick = {}, shape = CircleShape) {
-                    Text("Follow")
+
+        Column(
+            //horizontalAlignment = Alignment.BottomEnd,
+            modifier = Modifier
+                .padding(start = 180.dp, end = 8.dp, bottom = 8.dp, top = 16.dp)
+                .heightIn(max = 60.dp)
+                .widthIn(max = 180.dp),
+        ) {
+            Button(
+                onClick = {},
+                shape = CircleShape)
+            {
+                Image(
+                    painter = painterResource(R.drawable.phone),
+                    modifier = Modifier
+                        .size(40.dp),
+                    contentDescription = "phone",
+                    contentScale = ContentScale.Crop
+                )
+                Spacer(Modifier.size(padding))
+                Text("Adopt Me")
+            }
+        }
+    }
+}
+
+@Composable
+fun ProfileScreen(user: User) {
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        BoxWithConstraints {
+            Surface {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    ProfileHeader(
+                        user,
+                    )
                 }
             }
         }
@@ -69,14 +129,11 @@ fun ProfileHeader(user: User) {
 fun ProfileHeaderPreview() {
     val user = User(
         "2",
-        "Mary Jane",
-        "5 minutes ago",
+        "Cat",
         R.drawable.avatar_2,
-        R.drawable.image_2,
-        "10",
-        "5",
-        emptyList(),
-        emptyMap()
+        "Male",
+        "4",
+        "info"
     )
     ExampleComposeTheme {
         Surface {
@@ -84,3 +141,5 @@ fun ProfileHeaderPreview() {
         }
     }
 }
+
+

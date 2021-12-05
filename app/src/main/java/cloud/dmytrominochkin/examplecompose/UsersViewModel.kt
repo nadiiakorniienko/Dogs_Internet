@@ -18,105 +18,43 @@ class UsersViewModel : ViewModel() {
         _users.value = mutableListOf(
             User(
                 "1",
-                "Ivanna Ivanova",
-                "3 minutes ago",
+                "Kitty",
                 R.drawable.avatar_1,
-                R.drawable.image_1,
-                "100K",
-                "1.5K",
-                listOf(
-                    "food",
-                    "fashion",
-                    "nature",
-                    "dogs",
-                    "people",
-                    "selfies",
-                    "style",
-                    "fashion",
-                    "cats"
-                ),
-                mapOf(
-                    "Today" to listOf(
-                        R.drawable.user1_1,
-                        R.drawable.user1_2,
-                        R.drawable.user1_3,
-                        R.drawable.user1_4,
-                        R.drawable.user1_5,
-                        R.drawable.user1_6
-                    ),
-                    "Hobby" to listOf(
-                        R.drawable.user2_1,
-                        R.drawable.user2_2,
-                        R.drawable.user2_3,
-                        R.drawable.user2_4,
-                        R.drawable.user2_5,
-                        R.drawable.user2_6
-                    )
-                )
+                "Female",
+                "1",
+                "I like to sleep and purr."
             ),
             User(
                 "2",
-                "Mary Jane",
-                "10 minutes ago",
+                "Jackie",
                 R.drawable.avatar_2,
-                R.drawable.image_2,
-                "20K",
-                "999",
-                listOf("people", "selfies", "style", "fashion"),
-                mapOf(
-                    "Vacation" to listOf(
-                        R.drawable.user1_1,
-                        R.drawable.user1_2,
-                        R.drawable.user1_3,
-                        R.drawable.user1_4,
-                        R.drawable.user1_5,
-                        R.drawable.user1_6
-                    ),
-                    "Today" to listOf(
-                        R.drawable.user2_1,
-                        R.drawable.user2_2,
-                        R.drawable.user2_3,
-                        R.drawable.user2_4,
-                        R.drawable.user2_5,
-                        R.drawable.user2_6
-                    ),
-                    "Inspiration" to listOf(
-                        R.drawable.user3_1,
-                        R.drawable.user3_2,
-                        R.drawable.user3_3,
-                        R.drawable.user3_4,
-                        R.drawable.user3_5,
-                        R.drawable.user3_6
-                    )
-                )
+                "Male",
+                "3",
+                "I`m crazy and funny."
             ),
             User(
                 "3",
-                "Tess Tickle",
-                "1 day ago",
+                "Barsik",
                 R.drawable.avatar_3,
-                R.drawable.image_3,
-                "69K",
-                "420",
-                listOf("selife", "cats", "nature", "fashion"),
-                mapOf(
-                    "Life" to listOf(
-                        R.drawable.user3_1,
-                        R.drawable.user3_2,
-                        R.drawable.user3_3,
-                        R.drawable.user3_4,
-                        R.drawable.user3_5,
-                        R.drawable.user3_6
-                    ),
-                    "Hobby" to listOf(
-                        R.drawable.user1_1,
-                        R.drawable.user1_2,
-                        R.drawable.user1_3,
-                        R.drawable.user1_4,
-                        R.drawable.user1_5,
-                        R.drawable.user1_6
-                    )
-                )
+                "Male",
+                "5",
+                "I don`t like being touched."
+            ),
+            User(
+                "4",
+                "Jessie",
+                R.drawable.avatar_4,
+                "Female",
+                "6",
+                "I like fish so much."
+            ),
+            User(
+                "5",
+                "Blackie",
+                R.drawable.avatar_5,
+                "Male",
+                "3",
+                "I like to cross people`s path."
             )
         )
         viewModelScope.launch {
@@ -124,182 +62,86 @@ class UsersViewModel : ViewModel() {
             _users.value = mutableListOf(
                 User(
                     "1",
-                    "Ivanna Ivanova",
-                    "10 minutes ago",
+                    "Kitty",
                     R.drawable.avatar_1,
-                    R.drawable.image_1,
-                    "100K",
-                    "1.5K",
-                    listOf(
-                        "food",
-                        "fashion",
-                        "nature",
-                        "dogs",
-                        "people",
-                        "selfies",
-                        "style",
-                        "fashion",
-                        "cats"
-                    ),
-                    mapOf(
-                        "Today" to listOf(
-                            R.drawable.user1_1,
-                            R.drawable.user1_2,
-                            R.drawable.user1_3,
-                            R.drawable.user1_4,
-                            R.drawable.user1_5,
-                            R.drawable.user1_6
-                        ),
-                        "Hobby" to listOf(
-                            R.drawable.user2_1,
-                            R.drawable.user2_2,
-                            R.drawable.user2_3,
-                            R.drawable.user2_4,
-                            R.drawable.user2_5,
-                            R.drawable.user2_6
-                        )
-                    )
+                    "Female",
+                    "1",
+                    "I like to sleep and purr."
                 ),
                 User(
                     "2",
-                    "Mary Jane",
-                    "10 minutes ago",
+                    "Jackie",
                     R.drawable.avatar_2,
-                    R.drawable.image_2,
-                    "20K",
-                    "999",
-                    listOf("people", "selfies", "style", "fashion"),
-                    mapOf(
-                        "Vacation" to listOf(
-                            R.drawable.user1_1,
-                            R.drawable.user1_2,
-                            R.drawable.user1_3,
-                            R.drawable.user1_4,
-                            R.drawable.user1_5,
-                            R.drawable.user1_6
-                        ),
-                        "Today" to listOf(
-                            R.drawable.user2_1,
-                            R.drawable.user2_2,
-                            R.drawable.user2_3,
-                            R.drawable.user2_4,
-                            R.drawable.user2_5,
-                            R.drawable.user2_6
-                        ),
-                        "Inspiration" to listOf(
-                            R.drawable.user3_1,
-                            R.drawable.user3_2,
-                            R.drawable.user3_3,
-                            R.drawable.user3_4,
-                            R.drawable.user3_5,
-                            R.drawable.user3_6
-                        )
-                    )
+                    "Male",
+                    "3",
+                    "I`m crazy and funny."
+                ),
+                User(
+                    "3",
+                    "Barsik",
+                    R.drawable.avatar_3,
+                    "Male",
+                    "5",
+                    "I don`t like being touched."
+                ),
+                User(
+                    "4",
+                    "Jessie",
+                    R.drawable.avatar_4,
+                    "Female",
+                    "6",
+                    "I like fish so much."
+                ),
+                User(
+                    "5",
+                    "Blackie",
+                    R.drawable.avatar_5,
+                    "Male",
+                    "3",
+                    "I like to cross people`s path."
                 )
             )
             delay(5000)
             _users.value = mutableListOf(
                 User(
                     "1",
-                    "Ivanna Ivanova",
-                    "3 minutes ago",
+                    "Kitty",
                     R.drawable.avatar_1,
-                    R.drawable.image_1,
-                    "100K",
-                    "1.5K",
-                    listOf(
-                        "food",
-                        "fashion",
-                        "nature",
-                        "dogs",
-                        "people",
-                        "selfies",
-                        "style",
-                        "fashion",
-                        "cats"
-                    ),
-                    mapOf(
-                        "Today" to listOf(
-                            R.drawable.user1_1,
-                            R.drawable.user1_2,
-                            R.drawable.user1_3,
-                            R.drawable.user1_4,
-                            R.drawable.user1_5,
-                            R.drawable.user1_6
-                        ),
-                        "Hobby" to listOf(
-                            R.drawable.user2_1,
-                            R.drawable.user2_2,
-                            R.drawable.user2_3,
-                            R.drawable.user2_4,
-                            R.drawable.user2_5,
-                            R.drawable.user2_6
-                        )
-                    )
+                    "Female",
+                    "1",
+                    "I like to sleep and purr."
                 ),
                 User(
                     "2",
-                    "Mary Jane",
-                    "10 minutes ago",
+                    "Jackie",
                     R.drawable.avatar_2,
-                    R.drawable.image_2,
-                    "20K",
-                    "999",
-                    listOf("people", "selfies", "style", "fashion"),
-                    mapOf(
-                        "Vacation" to listOf(
-                            R.drawable.user1_1,
-                            R.drawable.user1_2,
-                            R.drawable.user1_3,
-                            R.drawable.user1_4,
-                            R.drawable.user1_5,
-                            R.drawable.user1_6
-                        ),
-                        "Today" to listOf(
-                            R.drawable.user2_1,
-                            R.drawable.user2_2,
-                            R.drawable.user2_3,
-                            R.drawable.user2_4,
-                            R.drawable.user2_5,
-                            R.drawable.user2_6
-                        ),
-                        "Inspiration" to listOf(
-                            R.drawable.user3_1,
-                            R.drawable.user3_2,
-                            R.drawable.user3_3,
-                            R.drawable.user3_4,
-                            R.drawable.user3_5,
-                            R.drawable.user3_6
-                        )
-                    )
+                    "Male",
+                    "3",
+                    "I`m crazy and funny."
                 ),
                 User(
                     "3",
-                    "Tess Tickle",
-                    "1 day ago",
+                    "Barsik",
                     R.drawable.avatar_3,
-                    R.drawable.image_3,
-                    "69K",
-                    "420",
-                    listOf("selife", "cats", "nature", "fashion"),
-                    mapOf(
-                        "Life" to listOf(
-                            R.drawable.user3_1,
-                            R.drawable.user3_2,
-                            R.drawable.user3_3,
-                            R.drawable.user3_4,
-                            R.drawable.user3_5,
-                            R.drawable.user3_6
-                        ),
-                        "Hobby" to listOf(
-                            R.drawable.user1_1,
-                            R.drawable.user1_2,
-                            R.drawable.user1_3,
-                            R.drawable.user1_4,
-                            R.drawable.user1_5,
-                            R.drawable.user1_6
-                        )
-                    )
+                    "Male",
+                    "5",
+                    "I don`t like being touched."
+                ),
+                User(
+                    "4",
+                    "Jessie",
+                    R.drawable.avatar_4,
+                    "Female",
+                    "6",
+                    "I like fish so much."
+                ),
+                User(
+                    "5",
+                    "Blackie",
+                    R.drawable.avatar_5,
+                    "Male",
+                    "3",
+                    "I like to cross people`s path."
                 )
             )
         }

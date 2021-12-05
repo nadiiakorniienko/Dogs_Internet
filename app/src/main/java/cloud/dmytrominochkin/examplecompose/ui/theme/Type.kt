@@ -15,7 +15,7 @@ val Typography = Typography(
     ),
     h6 = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 20.sp,
+        fontSize = 24.sp,
         letterSpacing = 0.15.sp
     ),
     caption = TextStyle(

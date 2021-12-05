@@ -32,15 +32,6 @@ fun FeedFab(state: LazyListState, modifier: Modifier) {
         exit = FabExitAnim,
     ) {
         val context = LocalContext.current
-        FloatingActionButton(
-            onClick = {
-                Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
-            },
-            modifier = Modifier.padding(8.dp),
-            backgroundColor = MaterialTheme.colors.primary
-        ) {
-            Icon(Icons.Default.Add, "Add")
-        }
     }
 }
 

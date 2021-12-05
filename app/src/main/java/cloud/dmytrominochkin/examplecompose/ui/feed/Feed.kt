@@ -31,9 +31,6 @@ fun Feed(
                 UserCard(user = it, onClick = { onSelected(it) })
             }
             if (users.size > 2) {
-                item {
-                    AdBanner()
-                }
                 items(users.subList(fromIndex = 2, toIndex = users.size)) {
                     UserCard(user = it, onClick = { onSelected(it) })
                 }

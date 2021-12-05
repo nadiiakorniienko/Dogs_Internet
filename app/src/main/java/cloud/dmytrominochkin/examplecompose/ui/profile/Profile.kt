@@ -25,13 +25,10 @@ import androidx.compose.ui.unit.dp
 import cloud.dmytrominochkin.examplecompose.R
 import cloud.dmytrominochkin.examplecompose.model.User
 import cloud.dmytrominochkin.examplecompose.ui.components.RoundedHeader
-import cloud.dmytrominochkin.examplecompose.ui.photos.PhotosGrid
-import cloud.dmytrominochkin.examplecompose.ui.photos.PhotosTab
 import cloud.dmytrominochkin.examplecompose.ui.theme.ExampleComposeTheme
 
 @Composable
 fun Profile(user: User, modifier: Modifier = Modifier) {
-    val padding = 16.dp
     Surface(
         modifier = modifier,
         color = MaterialTheme.colors.onSurface,
@@ -41,57 +38,7 @@ fun Profile(user: User, modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.weight(1f))
                 ProfileHeader(user)
                 Spacer(modifier = Modifier.weight(1f))
-                TagsList(
-                    user.tags,
-                    Modifier.padding(top = padding, bottom = padding)
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                PhotosCard(groupedPhotos = user.photos)
             }
-    }
-}
-
-@Composable
-private fun PhotosCard(groupedPhotos: Map<String, List<Int>>) {
-    val groups = groupedPhotos.keys.toList()
-    RoundedHeader(title = "Photos")
-    Surface {
-        Column {
-            var selectedGroup by rememberSaveable { mutableStateOf(groups.first()) }
-            PhotosTab(
-                groups = groups,
-                selectedGroup = selectedGroup,
-                onSelected = { selectedGroup = it }
-            )
-            PhotosGrid(
-                groupedPhotos.getValue(selectedGroup),
-                Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
-            )
-        }
-    }
-}
-
-@Composable
-private fun TagsList(tags: List<String>, modifier: Modifier = Modifier) {
-    val padding = 8.dp
-    LazyRow(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = padding * 2, end = padding),
-        horizontalArrangement = Arrangement.spacedBy(padding)
-    ) {
-        items(tags) {
-            Text(
-                text = it,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier
-                    .border(
-                        1.dp,
-                        LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
-                        CircleShape
-                    )
-                    .padding(padding)
-            )
-        }
     }
 }
 
@@ -100,18 +47,14 @@ private fun TagsList(tags: List<String>, modifier: Modifier = Modifier) {
 fun TagPreview() {
     val user = User(
         "1",
-        "Ivanna Ivanova",
-        "3 minutes ago",
+        "Cat",
         R.drawable.avatar_1,
-        R.drawable.image_1,
-        "101k",
-        "894",
-        listOf("travel", "urban", "fashion", "food", "mood", "home"),
-        emptyMap()
+        "Male",
+        "3",
+        "info"
     )
     ExampleComposeTheme {
         Surface {
-            TagsList(user.tags)
         }
     }
 }

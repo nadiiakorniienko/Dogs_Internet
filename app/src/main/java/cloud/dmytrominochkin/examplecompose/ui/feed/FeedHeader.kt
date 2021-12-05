@@ -28,12 +28,12 @@ fun FeedHeader() {
                 modifier = Modifier.padding(start = 16.dp)
             )
             Text(
-                text = "Dmytro",
+                text = "Nadiia Korniienko",
                 style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(start = 16.dp)
             )
             Spacer(modifier = Modifier.size(16.dp))
-            RoundedHeader(title = "Your feed")
+            RoundedHeader(title = "List of cats")
         }
     }
 }

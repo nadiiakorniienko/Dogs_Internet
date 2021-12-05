@@ -30,58 +30,52 @@ import androidx.compose.ui.unit.dp
 import cloud.dmytrominochkin.examplecompose.R
 import cloud.dmytrominochkin.examplecompose.model.User
 import cloud.dmytrominochkin.examplecompose.ui.theme.ExampleComposeTheme
+import androidx.compose.material.Divider
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.material.Card
 
 @Composable
-fun UserCard(
-    user: User,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+fun UserCard(user: User,
+             onClick: () -> Unit,
 ) {
-    val padding = 16.dp
-    Column(
-        modifier
-            .clickable(onClick = onClick)
-            .padding(
-                top = padding / 2,
-                start = padding,
-                end = padding,
-                bottom = padding / 2
-            )
-            .fillMaxWidth()
+    Card(
+        modifier = Modifier
+            .padding(horizontal = 8.dp, vertical = 8.dp)
+            .fillMaxWidth(),
+        elevation = 2.dp,
+        //backgroundColor = graySurface,
+        shape = RoundedCornerShape(corner = CornerSize(16.dp)),
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            Modifier
+                .clickable (onClick = onClick)
         ) {
-            Image(
-                painter = painterResource(id = user.avatar),
+            Image(user)
+            Column(
                 modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape),
-                contentScale = ContentScale.Crop,
-                contentDescription = "avatar"
-            )
-            Spacer(Modifier.size(padding))
-            Column {
-                Text(
-                    user.name,
-                    style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Medium)
-                )
-                CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                    Text(user.lastOnline, style = MaterialTheme.typography.caption)
-                }
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.CenterVertically)
+            ) {
+                Text(text = user.name, style = MaterialTheme.typography.h6)
+                Text(text = user.sex, style = MaterialTheme.typography.caption)
             }
         }
-        Spacer(Modifier.size(padding))
-        Image(
-            painterResource(id = user.coverImage),
-            contentDescription = "cover image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-                .shadow(elevation = 4.dp, clip = true, shape = RoundedCornerShape(4.dp)),
-            contentScale = ContentScale.Crop
-        )
     }
+}
+
+@Composable
+private fun Image(user: User) {
+    Image(
+        painter = painterResource(id = user.avatar),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .padding(8.dp)
+            .size(84.dp)
+            .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
+    )
 }
 
 @Preview
@@ -89,14 +83,11 @@ fun UserCard(
 fun UserCardPreview() {
     val user = User(
         "1",
-        "Ivanna Ivanova",
-        "3 minutes ago",
+        "Cat",
         R.drawable.avatar_1,
-        R.drawable.image_1,
-        "0",
-        "0",
-        emptyList(),
-        emptyMap()
+        "Male",
+        "3",
+        "info"
     )
     ExampleComposeTheme {
         Surface {

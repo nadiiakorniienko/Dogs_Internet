@@ -1,3 +1,4 @@
+/*
 package cloud.dmytrominochkin.examplecompose.ui.photos
 
 import androidx.compose.foundation.Image
@@ -75,3 +76,5 @@ fun PhotosGrid(images: List<Int>, modifier: Modifier = Modifier) {
         }
     }
 }
+
+*/
