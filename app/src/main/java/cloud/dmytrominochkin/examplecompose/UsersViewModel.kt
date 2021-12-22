@@ -3,147 +3,44 @@ package cloud.dmytrominochkin.examplecompose
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cloud.dmytrominochkin.examplecompose.model.User
-import kotlinx.coroutines.delay
+import io.ktor.client.*
+import io.ktor.client.engine.okhttp.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.request.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class UsersViewModel : ViewModel() {
     private val _users = MutableStateFlow<List<User>>(emptyList())
     val users: StateFlow<List<User>> = _users
 
-    fun getById(id: String) = users.value.first { it.id == id }
+    private val client = HttpClient(OkHttp) {
+        install(JsonFeature) {
+            serializer = KotlinxSerializer()
+        }
+    }
 
     init {
-        _users.value = mutableListOf(
-            User(
-                "1",
-                "Kitty",
-                R.drawable.avatar_1,
-                "Female",
-                "1",
-                "I like to sleep and purr."
-            ),
-            User(
-                "2",
-                "Jackie",
-                R.drawable.avatar_2,
-                "Male",
-                "3",
-                "I`m crazy and funny."
-            ),
-            User(
-                "3",
-                "Barsik",
-                R.drawable.avatar_3,
-                "Male",
-                "5",
-                "I don`t like being touched."
-            ),
-            User(
-                "4",
-                "Jessie",
-                R.drawable.avatar_4,
-                "Female",
-                "6",
-                "I like fish so much."
-            ),
-            User(
-                "5",
-                "Blackie",
-                R.drawable.avatar_5,
-                "Male",
-                "3",
-                "I like to cross people`s path."
-            )
-        )
+        getAll()
+    }
+
+    private fun getAll() {
         viewModelScope.launch {
-            delay(5000)
-            _users.value = mutableListOf(
-                User(
-                    "1",
-                    "Kitty",
-                    R.drawable.avatar_1,
-                    "Female",
-                    "1",
-                    "I like to sleep and purr."
-                ),
-                User(
-                    "2",
-                    "Jackie",
-                    R.drawable.avatar_2,
-                    "Male",
-                    "3",
-                    "I`m crazy and funny."
-                ),
-                User(
-                    "3",
-                    "Barsik",
-                    R.drawable.avatar_3,
-                    "Male",
-                    "5",
-                    "I don`t like being touched."
-                ),
-                User(
-                    "4",
-                    "Jessie",
-                    R.drawable.avatar_4,
-                    "Female",
-                    "6",
-                    "I like fish so much."
-                ),
-                User(
-                    "5",
-                    "Blackie",
-                    R.drawable.avatar_5,
-                    "Male",
-                    "3",
-                    "I like to cross people`s path."
-                )
-            )
-            delay(5000)
-            _users.value = mutableListOf(
-                User(
-                    "1",
-                    "Kitty",
-                    R.drawable.avatar_1,
-                    "Female",
-                    "1",
-                    "I like to sleep and purr."
-                ),
-                User(
-                    "2",
-                    "Jackie",
-                    R.drawable.avatar_2,
-                    "Male",
-                    "3",
-                    "I`m crazy and funny."
-                ),
-                User(
-                    "3",
-                    "Barsik",
-                    R.drawable.avatar_3,
-                    "Male",
-                    "5",
-                    "I don`t like being touched."
-                ),
-                User(
-                    "4",
-                    "Jessie",
-                    R.drawable.avatar_4,
-                    "Female",
-                    "6",
-                    "I like fish so much."
-                ),
-                User(
-                    "5",
-                    "Blackie",
-                    R.drawable.avatar_5,
-                    "Male",
-                    "3",
-                    "I like to cross people`s path."
-                )
-            )
+            try {
+                val response = client.get<List<User>>("$BASE_URL/dogs")
+                _users.update { response }
+            } catch (e: Exception) {
+                _users.update { emptyList() }
+            }
         }
+    }
+
+    fun getById(id: Int) = users.value.first { it.id == id }
+
+    companion object {
+        const val BASE_URL = "https://usersdogs-ip4weamexa-ew.a.run.app"
     }
 }

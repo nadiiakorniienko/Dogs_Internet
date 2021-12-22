@@ -26,6 +26,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.unit.Dp
 import org.intellij.lang.annotations.JdkConstants
+import cloud.dmytrominochkin.examplecompose.UsersViewModel
+import coil.compose.rememberImagePainter
 
 @Composable
 fun ProfileHeader(
@@ -38,16 +40,17 @@ fun ProfileHeader(
             .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 0.dp)
     ) {
         Image(
+            painter = rememberImagePainter(data = "${UsersViewModel.BASE_URL}${user.dogImage}"),
             modifier = Modifier
                 .heightIn(max = heightIn)
                 .fillMaxWidth(),
-            painter = painterResource(id = user.avatar),
-            contentScale = ContentScale.Crop,
-            contentDescription = null
+            contentDescription = "avatar",    
+            contentScale = ContentScale.Crop
+            
         )
 
         Text(
-            text = user.name,
+            text = user.title,
             style = MaterialTheme.typography.h6
         )
         Divider(color = Color.White, thickness = 1.dp)
@@ -65,7 +68,7 @@ fun ProfileHeader(
             style = MaterialTheme.typography.caption
         )
         Text(
-            text = user.age,
+            text = user.age.toString(),
             style = MaterialTheme.typography.h6
         )
         Divider(color = Color.White, thickness = 1.dp)
@@ -74,7 +77,7 @@ fun ProfileHeader(
             style = MaterialTheme.typography.caption
         )
         Text(
-            text = user.personality,
+            text = user.description,
             style = MaterialTheme.typography.h6
         )
         Divider(color = Color.White, thickness = 1.dp)
@@ -123,8 +126,7 @@ fun ProfileScreen(user: User) {
         }
     }
 }
-
-@Preview
+/*@Preview
 @Composable
 fun ProfileHeaderPreview() {
     val user = User(
@@ -140,6 +142,6 @@ fun ProfileHeaderPreview() {
             ProfileHeader(user = user)
         }
     }
-}
+}*/
 
 

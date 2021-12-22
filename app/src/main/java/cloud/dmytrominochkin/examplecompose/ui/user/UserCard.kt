@@ -34,6 +34,8 @@ import androidx.compose.material.Divider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.Card
+import cloud.dmytrominochkin.examplecompose.UsersViewModel
+import coil.compose.rememberImagePainter
 
 @Composable
 fun UserCard(user: User,
@@ -58,7 +60,7 @@ fun UserCard(user: User,
                     .fillMaxWidth()
                     .align(Alignment.CenterVertically)
             ) {
-                Text(text = user.name, style = MaterialTheme.typography.h6)
+                Text(text = user.title, style = MaterialTheme.typography.h6)
                 Text(text = user.sex, style = MaterialTheme.typography.caption)
             }
         }
@@ -68,7 +70,7 @@ fun UserCard(user: User,
 @Composable
 private fun Image(user: User) {
     Image(
-        painter = painterResource(id = user.avatar),
+        painter = rememberImagePainter(data = "${UsersViewModel.BASE_URL}${user.dogImage}"),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
@@ -78,20 +80,20 @@ private fun Image(user: User) {
     )
 }
 
-@Preview
+/*@Preview
 @Composable
 fun UserCardPreview() {
     val user = User(
         "1",
         "Cat",
-        R.drawable.avatar_1,
         "Male",
-        "3",
-        "info"
+        3,
+        "er",
+        R.drawable.avatar_1
     )
     ExampleComposeTheme {
         Surface {
             UserCard(user, {})
         }
     }
-}
+}*/

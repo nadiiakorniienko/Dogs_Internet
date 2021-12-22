@@ -20,7 +20,7 @@ import cloud.dmytrominochkin.examplecompose.ui.profile.Profile
 fun MainScreen() {
     StatusBarColorProvider()
     Surface(color = MaterialTheme.colors.onSurface) {
-        var selectedId by rememberSaveable { mutableStateOf<String?>(null) }
+        var selectedId by rememberSaveable { mutableStateOf<Int?>(null) }
         val viewModel = viewModel<UsersViewModel>()
         Crossfade(targetState = selectedId) { id ->
             if (id == null) {

@@ -42,19 +42,22 @@ fun Profile(user: User, modifier: Modifier = Modifier) {
     }
 }
 
+/*
 @Preview(widthDp = 200)
 @Composable
 fun TagPreview() {
-    val user = User(
+    */
+/*val user = User(
         "1",
         "Cat",
         R.drawable.avatar_1,
         "Male",
         "3",
         "info"
-    )
+    )*//*
+
     ExampleComposeTheme {
         Surface {
         }
     }
-}
+}*/
